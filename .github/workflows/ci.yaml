@@ -81,12 +81,12 @@ jobs:
 
       - name: Update tag in Kubernetes deployment manifest
         run: |
-          sed -i 's|image: .*|image: '"${{ secrets.DOCKER_USERNAME }}"'/product-catalog:'"${{ github.run_id }}"'|' kubernetes/product-catalog-deploy.yaml
+          sed -i 's|image: .*|image: '"${{ secrets.DOCKER_USERNAME }}"'/product-catalog:'"${{ github.run_id }}"'|' kubernetes/productcatalog/deploy.yaml
 
       - name: Commit and push changes
         run: |
           git config --global user.name "Anirudh Negi"
           git config --global user.email "4nirudhnegi@gmail.com"
-          git add kubernetes/product-catalog-deploy.yaml
+          git add kubernetes/productcatalog/deploy.yaml
           git commit -m "Update product catalog image tag via CI"
           git push
